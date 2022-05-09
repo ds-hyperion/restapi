@@ -1,0 +1,17 @@
+{
+    "name": "hyperion/restapi",
+    "description": "Plugin permettant d'abstraire la complexité  au niveau de la gestion de l'API rest de wordpress.",
+    "type": "plugin",
+    "autoload": {
+        "psr-4": {
+            "Hyperion\\RestAPI\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Grégory COLLIN",
+            "email": "gregory@d4rk0s.net"
+        }
+    ],
+    "require": {}
+}
