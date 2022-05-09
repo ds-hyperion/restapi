@@ -9,11 +9,15 @@ class Plugin
     public static function init()
     {
         add_action('add_api_endpoint', 'APIManagement::registerAPIEndpoint',1,10);
+    }
+
+    public static function addAdminPage()
+    {
         add_menu_page(
             'Configuration du plugin API',
-            'API',
+            'Rest API',
             'manage_options',
-            'Admin/Config.php'
+            __DIR__.'/Admin/Config.php'
         );
     }
 
