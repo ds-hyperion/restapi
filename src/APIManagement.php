@@ -27,7 +27,7 @@ class APIManagement
         });
     }
 
-    public static function APIOk(string $message = null) : WP_REST_Response
+    public static function APIOk($message = null) : WP_REST_Response
     {
         return new WP_REST_Response($message , $message ? 200 : 204);
     }
