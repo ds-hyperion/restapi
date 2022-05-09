@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Hyperion - REST API Management -
+ * Plugin Name: Hyperion - Module REST API -
  * Plugin URI:
  * Description: Gestion de l'API
  * Version: 0.1
