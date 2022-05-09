@@ -15,9 +15,9 @@ class Plugin
     {
         add_menu_page(
             'Configuration du plugin API',
-            'API',
+            'Rest API',
             'manage_options',
-            'Admin/Config.php'
+            __DIR__.'/Admin/Config.php'
         );
     }
 
