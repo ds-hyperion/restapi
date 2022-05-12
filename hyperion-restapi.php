@@ -10,7 +10,7 @@
  * Licence: GPLv2
  */
 
-add_action('init', '\Hyperion\RestAPI\Plugin::init');
 add_action('admin_menu', ['\Hyperion\RestAPI\Admin\Settings','createMenu']);
+add_action(Hyperion\RestAPI\Plugin::ADD_API_ENDPOINT_ACTION, 'Hyperion\RestAPI\APIManagement::registerAPIEndpoint',1,10);
 register_activation_hook(__FILE__, '\Hyperion\RestAPI\Plugin::install');
 register_uninstall_hook(__FILE__, '\Hyperion\RestAPI\Plugin::uninstall');
