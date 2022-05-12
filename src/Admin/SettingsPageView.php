@@ -7,7 +7,7 @@
         <table class="form-table">
             <tr>
                 <th scope="row">API Namespace</th>
-                <td><input type="text" name="api_namespace" value="<?php echo esc_attr( get_option('api_namespace') ); ?>" /></td>
+                <td><input type="text" name="<?php echo \Hyperion\RestAPI\Plugin::API_NAMESPACE_OPTION; ?>" value="<?php echo esc_attr( get_option(\Hyperion\RestAPI\Plugin::API_NAMESPACE_OPTION) ); ?>" /></td>
             </tr>
         </table>
 
