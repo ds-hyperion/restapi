@@ -21,6 +21,6 @@ class Settings
 
     public static function registerPluginSettings()
     {
-        register_setting(self::SETTINGS_GROUP, 'api_namespace');
+        register_setting(self::SETTINGS_GROUP, \Hyperion\RestAPI\Plugin::API_NAMESPACE_OPTION);
     }
 }
