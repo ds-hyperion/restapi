@@ -12,7 +12,7 @@ class APIManagement
     public static function registerAPIEndpoint(APIEndpointInterface $APIEndpoint)
     {
         if(!isset(self::$apiNS)) {
-            self::$apiNS = get_option(Plugin::API_NAMESPACE_OPTION);
+            self::$apiNS = get_option(\Hyperion\RestAPI\Plugin::API_NAMESPACE_OPTION);
             if(self::$apiNS === false) {
                 throw new Exception("API Namespace has not been set");
             }
