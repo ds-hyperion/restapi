@@ -16,7 +16,7 @@ class Settings
         );
 
         //call register settings function
-        add_action('admin_init', 'registerPluginSettings');
+        add_action('admin_init', ['\Hyperion\RestAPI\Admin\Settings','registerPluginSettings']);
     }
 
     public static function registerPluginSettings()
