@@ -12,16 +12,6 @@ class Plugin
         add_action(self::ADD_API_ENDPOINT_ACTION, 'APIManagement::registerAPIEndpoint',1,10);
     }
 
-    public static function addAdminPage()
-    {
-        add_menu_page(
-            'Configuration du plugin API',
-            'Rest API',
-            'manage_options',
-            __DIR__.'/Admin/Config.php'
-        );
-    }
-
     public static function install()
     {
         add_option(self::API_NAMESPACE_OPTION);
