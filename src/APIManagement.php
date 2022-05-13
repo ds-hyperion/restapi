@@ -42,13 +42,14 @@ class APIManagement
         return new WP_REST_Response(json_encode($data, JSON_THROW_ON_ERROR), 400);
     }
 
-    public static function APIClientDownloadWithURL(string $fileURL)
+    public static function APIClientDownloadWithURL(string $fileURL, string $filename)
     {
         $response = new WP_REST_Response();
         $response->set_data( file_get_contents( $fileURL ) );
         $response->set_headers( [
             'Content-Type'   => mime_content_type($fileURL),
             'Content-Length' => filesize( $fileURL ),
+            'Content-Disposition' => 'attachment; filename = "'.$filename.'"'
         ] );
 
         add_filter( 'rest_pre_serve_request', ['\Hyperion\RestAPI\APIManagement','serveFileForDownloading'], 0, 2 );
