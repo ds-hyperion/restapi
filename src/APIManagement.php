@@ -11,9 +11,9 @@ class APIManagement
 
     public static function registerAPIEndpoint(APIEndpointInterface $APIEndpoint)
     {
-        if(!isset(self::$apiNS)) {
+        if (!isset(self::$apiNS)) {
             self::$apiNS = get_option(\Hyperion\RestAPI\Plugin::API_NAMESPACE_OPTION);
-            if(self::$apiNS === false) {
+            if (self::$apiNS === false) {
                 throw new Exception("API Namespace has not been set");
             }
         }
@@ -27,12 +27,12 @@ class APIManagement
         });
     }
 
-    public static function APIOk($message = null) : WP_REST_Response
+    public static function APIOk($message = null): WP_REST_Response
     {
-        return new WP_REST_Response($message , $message ? 200 : 204);
+        return new WP_REST_Response($message, $message ? 200 : 204);
     }
 
-    public static function APIError(string $message, string $errorCode) : WP_REST_Response
+    public static function APIError(string $message, string $errorCode): WP_REST_Response
     {
         $data = [
             'message' => $message,
@@ -44,15 +44,16 @@ class APIManagement
 
     public static function APIClientDownloadWithURL(string $fileURL, string $filename)
     {
+        $content = file_get_contents($fileURL);
         $response = new WP_REST_Response();
-        $response->set_data( file_get_contents( $fileURL ) );
-        $response->set_headers( [
-            'Content-Type'   => mime_content_type($fileURL),
-            'Content-Length' => filesize( $fileURL ),
-            'Content-Disposition' => 'attachment; filename = "'.$filename.'"'
-        ] );
+        $response->set_data($content);
+        $response->set_headers([
+            'Content-Type' => "application/pdf",
+            'Content-Length' => strlen($content),
+            'Content-Disposition' => 'attachment; filename = "' . $filename . '"'
+        ]);
 
-        add_filter( 'rest_pre_serve_request', ['\Hyperion\RestAPI\APIManagement','serveFileForDownloading'], 0, 2 );
+        add_filter('rest_pre_serve_request', ['\Hyperion\RestAPI\APIManagement', 'serveFileForDownloading'], 0, 2);
 
         return $response;
     }
