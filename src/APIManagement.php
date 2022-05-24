@@ -52,6 +52,16 @@ class APIManagement
         return new WP_REST_Response($message, 403);
     }
 
+    public static function APIRedirect(string $urlToRedirect)
+    {
+        return rest_ensure_response(new WP_REST_Response(
+            null,
+            302,
+            array(
+                'Location' => $urlToRedirect
+            )
+        ));
+    }
 
 
     public static function APIClientDownloadWithURL(string $fileURL, string $filename)
