@@ -1,7 +1,7 @@
 {
     "name": "hyperion/restapi",
     "description": "Plugin permettant d'abstraire la complexité  au niveau de la gestion de l'API rest de wordpress.",
-    "type": "wordpress-muplugin",
+    "type": "wordpress-plugin",
     "autoload": {
         "psr-4": {
             "Hyperion\\RestAPI\\": "src/"
