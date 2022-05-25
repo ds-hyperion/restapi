@@ -9,15 +9,15 @@ class Settings
     public static function createMenu()
     {
         //create new top-level menu
-//        add_menu_page('Configuration du plugin API',
-//            'Rest API',
-//            'manage_options',
-//            __DIR__ . "/SettingsPageView.php"
-//        );
+        add_menu_page('Configuration du plugin API',
+            'Rest API',
+            'manage_options',
+            __DIR__ . "/SettingsPageView.php"
+        );
 
         add_menu_page(
-            'Configuration du plugin API',
-            'Rest API',
+            'Suivi des dons et adoptions',
+            'Adopte un corail',
             'manage_options',
             "restapi/SettingsPageView.php",
             [Settings::class, 'settingPage'],
