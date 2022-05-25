@@ -6,9 +6,13 @@ abstract class APIEnpointAbstract implements APIEndpointInterface
 {
     private static string $apiNamespace;
 
-    public static function getUrl(): string
+    public static function getUrl(array $queryArgs = null): string
     {
-        return getenv('WP_HOME')."/wp-json/".static::getAPINamespace()."/".static::getEndpoint();
+        if($queryArgs === null) {
+            return getenv('WP_HOME') . "/wp-json/" . static::getAPINamespace() . "/" . static::getEndpoint();
+        }
+
+        return getenv('WP_HOME') . "/wp-json/" . static::getAPINamespace() . "/" . static::getEndpoint()."?".http_build_query($queryArgs);
     }
 
     protected static function getAPINamespace() : string
