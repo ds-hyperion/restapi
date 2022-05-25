@@ -67,10 +67,11 @@ class APIManagement
     public static function APIClientDownloadWithURL(string $fileURL, string $filename)
     {
         $content = file_get_contents($fileURL);
+        $mimeType = mime_content_type($fileURL) === false ? "application/pdf" : mime_content_type($fileURL);
         $response = new WP_REST_Response();
         $response->set_data($content);
         $response->set_headers([
-            'Content-Type' => "application/pdf",
+            'Content-Type' => $mimeType,
             'Content-Length' => strlen($content),
             'Content-Disposition' => 'attachment; filename = "' . $filename . '"'
         ]);
@@ -83,6 +84,6 @@ class APIManagement
     public static function serveFileForDownloading($served, $result)
     {
         echo $result->get_data();
-        return true;
+        die;
     }
 }
