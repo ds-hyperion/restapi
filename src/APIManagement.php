@@ -64,7 +64,7 @@ class APIManagement
     }
 
 
-    public static function APIClientDownloadWithURL(string $fileURL, string $filename)
+    public static function APIClientDownloadWithURL(string $fileURL, string $filename, string $disposition = "attachment")
     {
         $content = file_get_contents($fileURL);
         $mimeType = mime_content_type($fileURL) === false ? "application/pdf" : mime_content_type($fileURL);
@@ -73,7 +73,7 @@ class APIManagement
         $response->set_headers([
             'Content-Type' => $mimeType,
             'Content-Length' => strlen($content),
-            'Content-Disposition' => 'attachment; filename = "' . $filename . '"'
+            'Content-Disposition' => $disposition . '; filename = "' . $filename . '"'
         ]);
 
         add_filter('rest_pre_serve_request', ['\Hyperion\RestAPI\APIManagement', 'serveFileForDownloading'], 0, 2);
