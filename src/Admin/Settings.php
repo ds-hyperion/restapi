@@ -15,14 +15,6 @@ class Settings
             __DIR__ . "/SettingsPageView.php"
         );
 
-        add_menu_page(
-            'Suivi des dons et adoptions',
-            'Adopte un corail',
-            'manage_options',
-            "restapi/SettingsPageView.php",
-            [Settings::class, 'settingPage'],
-            null
-        );
         //call register settings function
         add_action('admin_init', ['\Hyperion\RestAPI\Admin\Settings', 'registerPluginSettings']);
     }
