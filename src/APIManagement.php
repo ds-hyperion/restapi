@@ -42,9 +42,9 @@ class APIManagement
         return new WP_REST_Response(json_encode($data, JSON_THROW_ON_ERROR), 400);
     }
 
-    public static function APINotFound(): WP_REST_Response
+    public static function APINotFound(string $message = null): WP_REST_Response
     {
-        return new WP_REST_Response(null, 404);
+        return new WP_REST_Response($message, 404);
     }
 
     public static function APIForbidden(string $message = null): WP_REST_Response
