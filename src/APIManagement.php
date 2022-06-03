@@ -64,7 +64,7 @@ class APIManagement
     }
 
 
-    public static function APIClientDownloadWithURL(string $fileURL, string $filename, string $disposition = "attachment")
+    public static function APIClientDownloadWithURL(string $fileURL, string $filename, string $disposition = "attachment"): WP_REST_Response
     {
         $content = file_get_contents($fileURL);
         $mimeType = mime_content_type($fileURL) === false ? "application/pdf" : mime_content_type($fileURL);
