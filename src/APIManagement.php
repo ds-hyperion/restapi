@@ -63,6 +63,17 @@ class APIManagement
         ));
     }
 
+    public static function HTMLResponse(string $content): WP_REST_Response
+    {
+        $response = new WP_REST_Response();
+        $response->set_data($content);
+        $response->set_headers([
+            'Content-Type' => 'text/html; charset=UTF-8',
+            'Content-Length' => strlen($content)
+        ]);
+
+        return $response;
+    }
 
     public static function APIClientDownloadWithURL(string $fileURL, string $filename, string $disposition = "attachment"): WP_REST_Response
     {
