@@ -1,5 +1,5 @@
 {
-    "name": "hyperion/restapi",
+    "name": "wordpress-hyperion/restapi",
     "description": "Plugin permettant d'abstraire la complexité  au niveau de la gestion de l'API rest de wordpress.",
     "type": "wordpress-plugin",
     "autoload": {
