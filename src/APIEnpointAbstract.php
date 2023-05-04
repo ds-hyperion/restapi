@@ -2,6 +2,8 @@
 
 namespace Hyperion\RestAPI;
 
+use WP_Error;
+
 abstract class APIEnpointAbstract implements APIEndpointInterface
 {
     private static string $apiNamespace;
