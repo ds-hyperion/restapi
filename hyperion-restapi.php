@@ -16,5 +16,6 @@ add_action( 'rest_api_init', function() {
     remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
     add_filter( 'rest_pre_serve_request', ['\Hyperion\RestAPI\Plugin', 'activeCors']);
 }, 15 );
+add_filter('rest_pre_dispatch', '\Hyperion\RestAPI\APIEnpointAbstract::isCallAuthentified',10,3);
 register_activation_hook(__FILE__, '\Hyperion\RestAPI\Plugin::install');
 register_uninstall_hook(__FILE__, '\Hyperion\RestAPI\Plugin::uninstall');
