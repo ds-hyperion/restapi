@@ -26,15 +26,20 @@ abstract class APIEnpointAbstract implements APIEndpointInterface
         return self::$apiNamespace;
     }
 
+    // Un token est valable une minute.
     public static function isCallAuthentified($result, $server, $request)
     {
+        if(self::authentificationRequired() === false) {
+            return $result;
+        }
+
         $authorization_header = $request->get_header( 'Authorization' );
         $salt = get_option(Plugin::API_ANTIBOT_SALT_OPTION);
 
         if ( isset( $authorization_header ) && $salt ) {
             // Vérifier si l'en-tête Authorization contient un jeton valide
             $token = str_replace( 'Bearer ', '', $authorization_header );
-            if($token !== md5($salt.time())) {
+            if($token !== md5($salt.(time()/60))) {
                 return new WP_Error( 'rest_not_authenticated', __( 'Invalid authentification.', 'text-domain' ), array( 'status' => 401 ) );
             }
         } else {
@@ -43,6 +48,12 @@ abstract class APIEnpointAbstract implements APIEndpointInterface
         }
 
         return $result;
+    }
+
+    // Si cette méthode renvoie true, alors on vérifiera le token Authorization
+    public static function authentificationRequired() : bool
+    {
+        return true;
     }
 
     abstract public static function getEndpoint(): string;
