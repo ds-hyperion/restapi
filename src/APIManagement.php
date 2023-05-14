@@ -22,6 +22,7 @@ class APIManagement
             register_rest_route(self::$apiNS, '/' . $APIEndpoint::getEndpoint(), array(
                 'methods' => implode(",", $APIEndpoint::getMethods()),
                 'callback' => array($APIEndpoint, 'callback'),
+                'authentification_required' => $APIEndpoint::isAuthentificationRequired(),
                 'permission_callback' => $APIEndpoint::getPermissions()
             ));
         });

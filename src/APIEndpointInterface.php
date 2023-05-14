@@ -12,4 +12,6 @@ interface APIEndpointInterface
     public static function getMethods() : array;
     public static function getPermissions() : string;
     public static function getUrl() : string;
+    public static function isAuthentificationRequired() : bool;
+
 }
