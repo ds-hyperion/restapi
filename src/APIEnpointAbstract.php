@@ -41,7 +41,7 @@ abstract class APIEnpointAbstract implements APIEndpointInterface
         if ( isset( $authorization_header ) && $salt ) {
             // Vérifier si l'en-tête Authorization contient un jeton valide
             $token = str_replace( 'Bearer ', '', $authorization_header );
-            if($token !== md5($salt.(time()/60))) {
+            if($token !== md5($salt.(int) (time()/60))) {
                 return new WP_Error( 'rest_not_authenticated', __( 'Invalid authentification.', 'text-domain' ), array( 'status' => 401 ) );
             }
         } else {
