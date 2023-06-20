@@ -29,7 +29,7 @@ abstract class APIEnpointAbstract implements APIEndpointInterface
     // Un token est valable une minute.
     public static function isCallAuthentified($result, $server, $request)
     {
-        $routeDetails = current(rest_get_server()->get_routes()[$request->get_route()]);
+        $routeDetails = current((array) rest_get_server()->get_routes()[$request->get_route()]);
         if(!array_key_exists('authentification_required',$routeDetails) ||
            !$routeDetails['authentification_required']) {
             return $result;
